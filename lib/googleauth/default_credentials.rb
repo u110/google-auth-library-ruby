@@ -77,7 +77,7 @@ module Google
       def self.determine_creds_class json_key_io
         json_key = MultiJson.load json_key_io.read
         key = "type"
-        raise "the json is missing the '#{key}' field" unless json_key.key? key
+        raise MissingJsonKeyError("the json is missing the '#{key}' field") unless json_key.key? key
         type = json_key[key]
         case type
         when "service_account"
